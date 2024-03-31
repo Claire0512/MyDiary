@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Diary</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="index.js"></script>
+  </head>
+  <body>
+    <ul class="headerbar">
+      <h1>My Diary</h1>
+      <div id="button-container">
+        <button id="diary-add" tabindex="3">新增日記本</button>
+        <button id="diary-filter" tabindex="4">Tag 篩選</button>
+      </div>
+    </ul>
+   
+    <section id="todos"></section>
+  </body>
+  <template id="diary-item-template">
+    
+    <div class="diary-item">
+      <div class="diary-header">
+        <p class="diary-title">Diary date</p>
+        <li><button data-id="" class="diary-tag">tag</button></li>
+        <li><button data-id="" class="diary-mood">mood</button></li>
+      </div>
+      <p class="diary-content">Diary content</p>
+    </div>
+  </template>
+
+  <template id="mode-view">
+    <div id="mode-view-item-container">
+      <div class = "mode-view-content">
+        <div id = "mode-view-item" class="diary-item">
+        
+          <div class="diary-header">>
+            <p class="diary-title" id="diary-title">Diary date</p>
+            <ul>
+              <li><button data-id="" class="diary-edit">編輯</button></li>
+              <li><button data-id="" class="delete-todo">刪除</button></li>
+              <li><button id="closeModal2">關閉</button></li>
+            </ul>
+          </div>
+          <div class="diary-content-and-image">
+            <div>
+              <p class="diary-content2">Diary content</p>
+              <ul class="diary-content-tag">
+                <li><button data-id="" class="diary-tag2">tag</button></li>
+                <li><button data-id="" class="diary-mood2">mood</button></li>
+              </ul>
+            </div>
+            <div class="diary-image2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <div id="myModal" class="modal">
+    <div id="modal-content" class="diary-item2">
+      <p>請輸入日記日期：</p>
+      <input type="text" id="diary-input" tabindex="1" />
+      <p>請輸入日記内容：</p>
+      <textarea
+        id="diary-content-input"
+        tabindex="2"
+      ></textarea>
+      <ul id="diary-tag">
+        <p>請選擇標籤：</p>
+        <li><input type="button" class="tag-button" value="學業"></li>
+        <li><input type="button" class="tag-button" value="人際"></li>
+        <li><input type="button" class="tag-button" value="社團"></li>
+        <li><input type="button" class="tag-button" value="食物"></li>
+        <li><input type="button" class="tag-button" value="休閒"></li>
+        <li><input type="button" class="tag-button" value="旅遊"></li>
+        <li><input type="button" class="tag-button" value="工作"></li>
+        <li><input type="button" class="tag-button" value="生活"></li>
+        <li><input type="button" class="tag-button" value="其他"></li>
+      </ul>
+      <ul id="diary-mood">
+        <p>請選擇心情：</p>
+        <li><input type="button" class="mood-button" value="快樂"></li>
+        <li><input type="button" class="mood-button" value="生氣"></li>
+        <li><input type="button" class="mood-button" value="難過"></li>
+        <li><input type="button" class="mood-button" value="疲憊"></li>
+        <li><input type="button" class="mood-button" value="驚訝"></li>
+        <li><input type="button" class="mood-button" value="害怕"></li>
+        <li><input type="button" class="mood-button" value="無聊"></li>
+        <li><input type="button" class="mood-button" value="擔心"></li>
+        <li><input type="button" class="mood-button" value="其他"></li>
+      </ul> 
+      <form id="diary-image" enctype="multipart/form-data">
+        <p>請選擇圖檔：</p>
+        <input type="file" id="file-button2" value="插入圖片" style="display: none;" name="file" > 
+        <button id="file-button">選擇檔案</button>
+      </form>  
+      <button id="diary-save">儲存</button>
+      <button id="closeModal">取消</button>
+    </div>
+  </div>
+  
+  <div id="filter" class="filter">
+    <div id="filter-container">
+      <div class="filter-content">
+        <div id = "filter-item" class="diary-item3">
+          <ul id="filter-tag">
+            <li>
+              <p>請選擇你想要保留的標籤：</p>
+              <input type="button" class="tag-button2" value="學業">
+              <input type="button" class="tag-button2" value="人際">
+              <input type="button" class="tag-button2" value="社團">
+              <input type="button" class="tag-button2" value="食物">
+              <input type="button" class="tag-button2" value="休閒">
+              <input type="button" class="tag-button2" value="旅遊">
+              <input type="button" class="tag-button2" value="工作">
+              <input type="button" class="tag-button2" value="生活">
+              <input type="button" class="tag-button2" value="其他">
+            </li>
+          </ul>
+          <ul id="filter-mood">
+            <li>
+              <p>請選擇你想要保留的心情：</p>
+              <input type="button" class="mood-button2" value="快樂">
+              <input type="button" class="mood-button2" value="生氣">
+              <input type="button" class="mood-button2" value="難過">
+              <input type="button" class="mood-button2" value="疲憊">
+              <input type="button" class="mood-button2" value="驚訝">
+              <input type="button" class="mood-button2" value="害怕">
+              <input type="button" class="mood-button2" value="無聊">
+              <input type="button" class="mood-button2" value="擔心">
+              <input type="button" class="mood-button2" value="其他">
+            </li>
+          </ul>
+          <ul id="filter-button">
+            <li>
+            <button id="diary-save2">儲存</button>
+            <button id="closeModal2">取消</button>
+            <button id="filterRecover">恢復預設</button>
+            <li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</html>
